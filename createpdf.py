@@ -147,7 +147,7 @@ def CreatePDF(ddOrcament, ddCliente):
         
         #ADD CARACTERÍSTICAS
         pdf.setFont("Helvetica", 8)
-        TextQuebr = quebrarLinhas(contac[1], 47)
+        TextQuebr = quebrarLinhas(contac[1], 40)
         altura_quebra = altura
         for linha in TextQuebr:
             pdf.drawString(120, altura_quebra, str(linha).strip())
