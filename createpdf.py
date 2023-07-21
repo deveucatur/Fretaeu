@@ -22,6 +22,40 @@ bd_carros = mycursor.fetchall()
 mycursor.close()
 
 
+def formatar_numero_string(numero_str):
+
+    #FUNÇÃO QUE INVERTE STRINGS
+    def inverteString(string):
+        StringInvert = ''
+        for i in range(len(string) - 1, -1, -1):
+            StringInvert += string[i]
+
+        return StringInvert
+
+
+    partes = numero_str.split(",")
+    
+    #INVERTENDO OS NUMEROS PARA CONTABILIZAR E ADCIONAR PONTOS ENTRE OS DIGITOS
+    textInvertAUX = inverteString(partes[0])
+
+    contDigits = 0
+    stringAUX = ''
+    for a in textInvertAUX:
+        contDigits += 1
+        stringAUX += a
+        if contDigits == 3:
+            stringAUX += '.'
+            contDigits = 0
+
+    #INVERTENDO NOVAMENTE E TRAZENDO OS DIGITOS PARA FORMATO ORIGINAL, PORÉM, AGORA COM OS PONTOS ENTRE ELES
+    stringOFI = inverteString(stringAUX)
+    
+    if len(partes) > 1:
+        return f"{stringOFI},{partes[1]}0"
+    else:
+        return stringOFI
+    
+
 def limpaValorDIC(orcament):
     text = ''
     for a in orcament:
@@ -147,10 +181,10 @@ def CreatePDF(ddOrcament, ddCliente):
         
         #ADD CARACTERÍSTICAS
         pdf.setFont("Helvetica", 8)
-        TextQuebr = quebrarLinhas(contac[1], 40)
+        TextQuebr = quebrarLinhas(contac[1], 47)
         altura_quebra = altura
         for linha in TextQuebr:
-            pdf.drawString(120, altura_quebra, str(linha).strip())
+            pdf.drawString(120, altura_quebra, str(linha).strip().replace(r"\n", ""))
             altura_quebra -= 10
         
         
@@ -169,7 +203,7 @@ def CreatePDF(ddOrcament, ddCliente):
 
         #ADD VALOR TOTAL
         pdf.setFont("Helvetica-Bold", 12) 
-        pdf.drawString(510, altura - 10, f'R$ {contac[3]}')
+        pdf.drawString(510, altura - 10, f'R$ {formatar_numero_string(str(contac[3]).replace(".",","))}')
 
         altura -= 80
         
@@ -179,4 +213,3 @@ def CreatePDF(ddOrcament, ddCliente):
     buffer.seek(0)
 
     return buffer.getvalue()
-
