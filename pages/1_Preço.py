@@ -202,12 +202,7 @@ for cen in range(cenarios):
         
         listOrcaments.append(orcament)    
         st.divider()
-        st.info(f"""
-                    INFORMAÇÕES PROPOSTA {cen + 1}
-                    ----------------------------------------------------------------
-                    ----------------------------------------------------------------
-                    
-
+        st.info(f"""                    
                     Cliente:  **{NomeCliente}**
 
                     Rota : **{CidadeOri} - {CidadeDest}**
