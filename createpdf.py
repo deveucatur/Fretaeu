@@ -150,7 +150,7 @@ def CreatePDF(ddOrcament, ddCliente):
         TextQuebr = quebrarLinhas(contac[1], 47)
         altura_quebra = altura
         for linha in TextQuebr:
-            pdf.drawString(140, altura_quebra, str(linha).strip())
+            pdf.drawString(120, altura_quebra, str(linha).strip())
             altura_quebra -= 10
         
         
