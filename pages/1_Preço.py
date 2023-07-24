@@ -205,14 +205,8 @@ for cen in range(cenarios):
         st.info(f"""                    
                     Cliente:  **{NomeCliente}**
 
-                    Rota : **{CidadeOri} - {CidadeDest}**
-
-                    Ida e Volta: **{'Sim' if val_idaevolta == 'Ida e volta' else 'Não'}**
-                    
-                    Data: **{DtIda.strftime("%d/%m/%Y")}{f" - {DtVolta.strftime('%d/%m/%Y')}" if val_idaevolta == "Ida e volta" else ""}**
-                    
-                    Passageiros: **{passageiros}**
-                    
+                    ----------------------------------------------------------------
+                
                     Veículo a Disposição: **{'Sim' if val_disposDes else 'Não'}**
                     
                     Diárias: **{diaria}**
@@ -222,7 +216,6 @@ for cen in range(cenarios):
                     KM Deslocamento:  **{kmDeslocamento}**
 
                     KM Extra:  **{kmExtra}**
-
                     
                     ----------------------------------------------------------------
                     KM TOTAL: 
